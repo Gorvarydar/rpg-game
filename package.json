@@ -1,10 +1,7 @@
 {
-  "name": "JS-MARATHON",
+  "name": "js",
   "version": "1.0.0",
-  "description": "  rpg for all",
-  "engines": {
-    "node": "6.14.x"
-  },
+  "description": "rpg for all",
   "scripts": {
     "build:dev": "env NODE_ENV=development webpack",
     "build": "env NODE_ENV=production webpack",
@@ -49,5 +46,9 @@
     "webpack": "^5.41.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/inert": "^6.0.3"
   }
 }
