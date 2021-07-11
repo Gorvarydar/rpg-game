@@ -63,7 +63,7 @@ class ClientEngine {
     //     }
     //   });
     // });
-    //так  и не понял как переписать  for in в forEach //
+    // так  и не понял как переписать  for in в forEach
     return Promise.all(this.imageLoaders);
   }
 

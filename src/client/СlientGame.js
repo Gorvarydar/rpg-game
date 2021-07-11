@@ -25,7 +25,7 @@ class ClientGame {
     this.engine.loadSprites(sprites).then(() => {
       // eslint-disable-next-line
       this.engine.on('render', (_, time) => {
-        //(_, time) не смог линту объяснить что с этим делать
+        //  (_, time) не смог линту объяснить что с этим делать
         this.map.init();
       });
       this.engine.start();
