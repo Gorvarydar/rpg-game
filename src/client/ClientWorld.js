@@ -24,28 +24,28 @@ class ClientWorld extends PositionedObject{
 
   init() {
     const {levelCfg, map, worldWidth, worldHeight} =this;
-     for (let row = 0; row < worldHeight; row++) {
-        for(let col = 0; col <worldWidth; col++) {
-    if (!map[row]){
-      map[row] = [];
-     }
-           map[row][col] = new ClientCell({
-             world: this,
-             cellCol: col,
-              cellRow: row,
-               cellCfg: levelCfg.map[row][col],
-       })
+    for (let row = 0; row < worldHeight; row++) {
+      for(let col = 0; col <worldWidth; col++) {
+        if (!map[row]){
+          map[row] = [];
+        }
+        map[row][col] = new ClientCell({
+          world: this,
+          cellCol: col,
+          cellRow: row,
+          cellCfg: levelCfg.map[row][col],
+        })
       }
     }
   }
 
   render (time) {
     const {map, worldWidth, worldHeight} = this;
-      for (let row = 0; row < worldHeight; row++) {
-        for(let col = 0; col < worldWidth; col++) {
-          map[row][col].render(time)
-        }
+    for (let row = 0; row < worldHeight; row++) {
+      for(let col = 0; col < worldWidth; col++) {
+        map[row][col].render(time)
       }
+    }
   }
 
   cellAt(col, row) {
