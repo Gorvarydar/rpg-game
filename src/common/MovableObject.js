@@ -1,4 +1,4 @@
-import { animateEx, clamp } from "./util";
+import { animateEx, clamp } from './util';
 import PositionedObject from './PositionedObject';
 
 class MovableObject extends PositionedObject {
@@ -31,8 +31,8 @@ class MovableObject extends PositionedObject {
       const dx = animateEx(me.deltaX, me.motionStartTime, time, me.speed);
       const dy = animateEx(me.deltaY, me.motionStartTime, time, me.speed);
 
-      const  newX = me.toX + dx.offset - me.deltaX;
-      const  newY = me.toY + dy.offset - me.deltaY;
+      const newX = me.toX + dx.offset - me.deltaX;
+      const newY = me.toY + dy.offset - me.deltaY;
 
       // const [newX, newY] = [me.toX, me.toY];
 
@@ -66,24 +66,24 @@ class MovableObject extends PositionedObject {
     }
     // this.x = newX;
     // this.y = newY;
-    if(smooth) {
-      this.startMotion(newX, newY, speed)
-    }else{
+    if (smooth) {
+      this.startMotion(newX, newY, speed);
+    } else {
       this.x = newX;
       this.y = newY;
     }
   }
 
   startMotion(newX, newY, speed) {
-    if(this.world) {
-      Object.assign(this,{
+    if (this.world) {
+      Object.assign(this, {
         motionStartTime: this.world.engine.lastRenderTime,
         speed,
         toX: newX,
         toY: newY,
         deltaX: newX - this.x,
         deltaY: newY - this.y,
-      })
+      });
     }
   }
 }

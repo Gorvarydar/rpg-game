@@ -1,6 +1,6 @@
 import EventSourceMixin from '../common/EventSourceMixin';
-import ClientCamera from "./ClientCamera";
-import ClientInput from "./ClientInput";
+import ClientCamera from './ClientCamera';
+import ClientInput from './ClientInput';
 
 class ClientEngine {
   constructor(canvas, game) {
@@ -12,7 +12,7 @@ class ClientEngine {
       imageLoaders: [],
       sprites: {},
       images: {},
-      camera: new ClientCamera({canvas, engine:this}),
+      camera: new ClientCamera({ canvas, engine: this }),
       input: new ClientInput(canvas),
       game,
       lastRenderTime: 0,
@@ -29,8 +29,8 @@ class ClientEngine {
   }
 
   loop(timestamp) {
-    if(!this.startTime) {
-      this.startTime = timestamp
+    if (!this.startTime) {
+      this.startTime = timestamp;
     }
     this.lastRenderTime = timestamp;
 
@@ -80,7 +80,7 @@ class ClientEngine {
     const spriteCfg = this.sprites[sprite[0]][sprite[1]];
     const [fx, fy, fw, fh] = spriteCfg.frames[frame];
     const img = this.images[spriteCfg.img];
-    const camera = this.camera
+    const { camera } = this;
 
     this.ctx.drawImage(img, fx, fy, fw, fh, x - camera.x, y - camera.y, w, h);
   }

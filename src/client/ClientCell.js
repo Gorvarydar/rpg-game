@@ -1,4 +1,3 @@
-
 import PositionedObject from '../common/PositionedObject';
 import ClientGameObject from './ClientGameObject';
 
@@ -48,4 +47,4 @@ class ClientCell extends PositionedObject {
   }
 }
 
-export default ClientCell; 
+export default ClientCell;
