@@ -108,4 +108,83 @@ import sprites from './configs/sprites';
 //
 //
 //
-//
+import { io } from 'socket.io-client';
+import ClientGame from './client/СlientGame';
+import ClientPlayer from './client/ClientPlayer';
+import './index.scss';
+
+import { getTime } from './common/util';
+
+window.addEventListener('load', () => {
+  const socket = io('https://jsprochat.herokuapp.com');
+  const startGame = document.querySelector('.start-game');
+  const inputName = document.getElementById('name');
+  const form = document.getElementById('nameForm');
+
+  const chatClass = document.querySelector('.chat-wrap');
+  const inputChat = document.getElementById('input');
+  const formChat = document.getElementById('form');
+  const message = document.querySelector('.message');
+
+  const eventSubmit = (e) => {
+    e.preventDefault();
+
+    if (inputName.value) {
+      ClientGame.init({
+        tagId: 'game',
+        playerName: inputName.value,
+      });
+      socket.emit('start', inputName.value);
+      chatClass.style.display = 'block';
+
+      form.removeEventListener('submit', eventSubmit);
+      startGame.remove();
+    }
+  };
+  form.addEventListener('submit', eventSubmit);
+
+  formChat.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (inputChat.value) {
+      console.dir(inputChat.value);
+      socket.emit('chat message', inputChat.value);
+
+      inputChat.value = '';
+    }
+  });
+
+  socket.on('chat connection', (data) => {
+    message.insertAdjacentHTML('beforeend', `<p><strong>${getTime(data.time)}</strong> - ${data.msg}</p>`);
+  });
+
+  socket.on('chat disconnect', (data) => {
+    message.insertAdjacentHTML('beforeend', `<p><strong>${getTime(data.time)}</strong> - ${data.msg}</p>`);
+  });
+
+  socket.on('chat online', (data) => {
+    console.log('data', data);
+    console.log(data.names);
+    message.insertAdjacentHTML(
+      'beforeend',
+      `<p><strong>${getTime(data.time)}</strong> - 
+         <strong> users online: ${data.online} </strong>   `,
+    );
+  });
+
+  socket.on('chat message', (data) => {
+    console.log(socket.id);
+    console.log();
+    if (socket.id === data.id) {
+      message.insertAdjacentHTML(
+        'beforeend',
+        `<p><strong>${getTime(data.time)} - </strong> <mark>${data.msg}</mark></sup></p>`,
+      );
+    } else {
+      message.insertAdjacentHTML(
+        'beforeend',
+        `<p><strong>${getTime(data.time)} - </strong><a style="color: #0633ff">${data.msg}</a></p>`,
+      );
+    }
+  });
+});
