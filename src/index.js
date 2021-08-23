@@ -1,8 +1,8 @@
 // import './index.scss';
-// import SenseiWalk from './assets/Male-3-Walk.png';
-// import terrainAtlas from './assets/terrain.png';
-// import worldCfg from './configs/world.json';
-// import sprites from "./configs/sprites";
+import SenseiWalk from './assets/Male-3-Walk.png';
+import terrainAtlas from './assets/terrain.png';
+import worldCfg from './configs/world.json';
+import sprites from './configs/sprites';
 //
 //
 // const spriteW = 48;
@@ -109,9 +109,4 @@
 //
 //
 //
-import ClientGame from './client/СlientGame';
-import './index.scss';
 
-window.addEventListener('load', () => {
-  ClientGame.init({ tagId: 'game' });
-});

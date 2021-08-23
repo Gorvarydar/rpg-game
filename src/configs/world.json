@@ -1,3 +1,4 @@
+
 {
   "camera": {
     "height": 15,
@@ -42,7 +43,7 @@
       [["grass"]],
       [["grass"]],
       [["grass"]],
-      [["grass", {"type": "boy3", "player": true}]],
+      [["grass"], [], [{ "type": "boy1", "class": "player"}]],
       [["grass"]],
       [["grass"]],
       [["grass"]],

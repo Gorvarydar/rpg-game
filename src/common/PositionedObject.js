@@ -1,5 +1,4 @@
 import EventSourceMixin from './EventSourceMixin';
-
 class PositionedObject {
   constructor(cfg) {
     Object.assign(
