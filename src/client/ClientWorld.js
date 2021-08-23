@@ -57,7 +57,7 @@ class ClientWorld extends PositionedObject {
     const { engine } = this;
     const { camera } = engine;
 
-    const layerName = 'static_layer_' + layerId;
+    const layerName = `static_layer_${layerId}`;
     const cameraPos = camera.worldBounds();
 
     if (!layer.isRendered) {
@@ -88,8 +88,8 @@ class ClientWorld extends PositionedObject {
     }
     const { startCell, endCell } = rangeCells;
 
-    for (let row = startCell.row; row <= endCell.row; row++) {
-      for (let col = startCell.col; col <= endCell.col; col++) {
+    for (let { row } = startCell; row <= endCell.row; row++) {
+      for (let { col } = startCell; col <= endCell.col; col++) {
         map[row][col].render(time, layerId);
       }
     }
@@ -104,6 +104,7 @@ class ClientWorld extends PositionedObject {
 
     return this.cellAt((clamp(x, 0, width - 1) / cellWidth) | 0, (clamp(y, 0, height - 1) / cellHeight) | 0);
   }
+
   getRenderRange() {
     const { x, y, width, height } = this.engine.camera.worldBounds();
     const { cellWidth, cellHeight } = this;

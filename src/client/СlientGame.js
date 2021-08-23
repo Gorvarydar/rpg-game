@@ -3,7 +3,6 @@ import ClientWorld from './ClientWorld';
 import sprites from '../configs/sprites';
 import levelCfg from '../configs/world.json';
 import gameObjects from '../configs/gameObjects.json';
-import ClientPlayer from './ClientPlayer';
 
 class ClientGame {
   constructor(cfg) {
@@ -29,6 +28,7 @@ class ClientGame {
   createWorld() {
     return new ClientWorld(this, this.engine, levelCfg);
   }
+
   getWorld() {
     return this.map;
   }
@@ -53,6 +53,7 @@ class ClientGame {
       ArrowDown: (keydown) => keydown && this.movePlayerToDir('down'),
     });
   }
+
   movePlayerToDir(dir) {
     const dirs = {
       left: [-1, 0],
@@ -63,15 +64,18 @@ class ClientGame {
     const { player } = this;
 
     if (player && player.motionProgress === 1) {
-      const canMove = player.moveByCellCoord(dirs[dir][0], dirs[dir][1], (cell) => {
-        return cell.findObjectsByType('grass').length;
-      });
+      const canMove = player.moveByCellCoord(
+        dirs[dir][0],
+        dirs[dir][1],
+        (cell) => cell.findObjectsByType('grass').length,
+      );
       if (canMove) {
         player.setState(dir);
         player.once('motion-stopped', () => player.setState('main'));
       }
     }
   }
+
   static init(cfg) {
     if (!ClientGame.game) {
       ClientGame.game = new ClientGame(cfg);

@@ -1,6 +1,6 @@
 import PositionedObject from '../common/PositionedObject';
 import ClientGameObject from './ClientGameObject';
-import ClientGame from './СlientGame';
+
 import ClientPlayer from './ClientPlayer';
 
 class ClientCell extends PositionedObject {

@@ -7,7 +7,7 @@ class ClientGameObject extends MovableObject {
 
     const { x, y, width, height } = cfg.cell;
 
-    const world = cfg.cell.world;
+    const { world } = cfg.cell;
     const gameObjs = world.game.gameObjects;
     const objCfg = typeof cfg.objCfg === 'string' ? { type: cfg.objCfg } : cfg.objCfg;
 
@@ -65,6 +65,7 @@ class ClientGameObject extends MovableObject {
       this.animationStartTime = this.world.engine.lastRenderTime;
     }
   }
+
   getCurrentFrame(time) {
     const state = this.spriteCfg.states[this.state];
     const lengthFrame = state.frames.length;
@@ -78,7 +79,7 @@ class ClientGameObject extends MovableObject {
     super.render(time);
 
     const { x, y, width, height, world } = this;
-    const engine = world.engine;
+    const { engine } = world;
 
     const { sprite, frame, states, type } = this.spriteCfg;
 
