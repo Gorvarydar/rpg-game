@@ -2,7 +2,7 @@ import ClientEngine from './ClientEngine';
 import ClientWorld from './ClientWorld';
 import sprites from '../configs/sprites';
 import levelCfg from '../configs/world.json';
-import gameObjects from '../configs/gameObjects.json'
+import gameObjects from '../configs/gameObjects.json';
 
 class ClientGame {
   constructor(cfg) {
@@ -16,7 +16,7 @@ class ClientGame {
     this.initEngine();
   }
 
-  setPlayer(player){
+  setPlayer(player) {
     this.player = player;
   }
 
@@ -29,54 +29,51 @@ class ClientGame {
   }
 
   initEngine() {
-    this.engine
-      .loadSprites(sprites)
-      .then(() => {
-        this.map.init();
-        this.engine.on('render', (_, time) => {
-          this.map.render();
-        })
-        this.engine.start();
-        this.initKeys();
+    this.engine.loadSprites(sprites).then(() => {
+      this.map.init();
+      this.engine.on('render', (_, time) => {
+        this.map.render();
       });
+      this.engine.start();
+      this.initKeys();
+    });
   }
 
-  initKeys(){
+  initKeys() {
     this.engine.input.onKey({
       ArrowLeft: (keydown) => {
         console.log(keydown);
         if (keydown) {
-          this.player.moveByCellCoord(-1, 0,(cell => {
+          this.player.moveByCellCoord(-1, 0, (cell) => {
             return cell.findObjectsByType('grass').length;
-          }))
+          });
         }
       },
       ArrowRight: (keydown) => {
         console.log(keydown);
         if (keydown) {
-          this.player.moveByCellCoord(+1, 0,(cell => {
+          this.player.moveByCellCoord(+1, 0, (cell) => {
             return cell.findObjectsByType('grass').length;
-          }))
+          });
         }
       },
       ArrowUp: (keydown) => {
         console.log(keydown);
         if (keydown) {
-          this.player.moveByCellCoord(0, -1,(cell => {
+          this.player.moveByCellCoord(0, -1, (cell) => {
             return cell.findObjectsByType('grass').length;
-          }))
+          });
         }
       },
       ArrowDown: (keydown) => {
         console.log(keydown);
         if (keydown) {
-          this.player.moveByCellCoord(0, +1,(cell => {
+          this.player.moveByCellCoord(0, +1, (cell) => {
             return cell.findObjectsByType('grass').length;
-          }))
+          });
         }
       },
-    }
-   )
+    });
   }
 
   static init(cfg) {

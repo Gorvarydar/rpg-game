@@ -1,4 +1,3 @@
-
 import PositionedObject from '../common/PositionedObject';
 import ClientGameObject from './ClientGameObject';
 
