@@ -28,6 +28,7 @@ module.exports = {
           'style-loader',
           'css-loader',
           'sass-loader',
+
         ]
       },
       {
@@ -39,8 +40,10 @@ module.exports = {
                 options: {
                   name: '[name].[ext]',
                   outputPath: 'assets/',
+
                 }
               }
+
             ]
         }
      ],

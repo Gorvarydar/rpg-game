@@ -18,7 +18,7 @@ class MovableObject extends PositionedObject {
         motionStartTime: 0,
         motionProgress: 1,
 
-        clampToMap: true, //  по умолчанию объект не должен вылетать за пределы карты
+        clampToMap: true, //  по умолчанию объект не должен вылетать за пределы карты
       },
       cfg,
     );
@@ -34,6 +34,8 @@ class MovableObject extends PositionedObject {
       const newX = me.toX + dx.offset - me.deltaX;
       const newY = me.toY + dy.offset - me.deltaY;
 
+      me.motionProgress = dx.progress;
+
       // const [newX, newY] = [me.toX, me.toY];
 
       if (newX === me.toX && newY === me.toY) {
@@ -42,6 +44,7 @@ class MovableObject extends PositionedObject {
         me.motionProgress = 1;
         me.trigger('motion-stopped');
       }
+
       me.x = newX;
       me.y = newY;
     }
@@ -64,8 +67,6 @@ class MovableObject extends PositionedObject {
         newY = clamp(y, 0, world.height - height);
       }
     }
-    // this.x = newX;
-    // this.y = newY;
     if (smooth) {
       this.startMotion(newX, newY, speed);
     } else {
